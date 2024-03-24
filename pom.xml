@@ -22,10 +22,11 @@
             <artifactId>nd4j-common</artifactId>
             <version>1.0.0-beta2</version>
         </dependency>
-#Change 1 - Changes for Unit Test Coverage Percentage Update on SonarCloud Dashboard
-#By Batume
-#3/23/2024 11:14 AM IS
+<!--#Change 1 - Changes for Unit Test Coverage Percentage Update on SonarCloud Dashboard
+    #By Batume
+    #5/12/2022 11:14 AM IST
 #Default Location of CodeCoverage File is target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+-->
         <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -36,10 +37,11 @@
     <build>
         <plugins>
 
-#Change 2 - Changes for Unit Test Coverage Percentage Update on SonarCloud Dashboard
-#By Batume
-#3/23/2024 11:14 AM IST
+<!--#Change 2 - Changes for Unit Test Coverage Percentage Update on SonarCloud Dashboard
+    #By Batume
+    #5/12/2022 11:14 AM IST
 #Default Location of CodeCoverage File is target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                <artifactId>jacoco-maven-plugin</artifactId>
@@ -64,16 +66,18 @@
                   </execution>
                 </executions>
               </plugin>
-# Changes for Software Composition Analysis Scan using Snyk
+
+<!--# Changes for Software Composition Analysis Scan using Snyk
     #By Batume
     #5/12/2022 11:14 AM IST
+-->
         <plugin>
           <groupId>io.snyk</groupId>
           <artifactId>snyk-maven-plugin</artifactId>
           <version>2.0.0</version>
           <inherited>false</inherited>
           <configuration>
-            <org>batumejavaprojectaws-5</org>
+            <org>Batume</org>
           </configuration>
         </plugin>
        </plugins>
