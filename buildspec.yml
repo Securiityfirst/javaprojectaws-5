@@ -4,9 +4,6 @@ env:
     secrets-manager:
       TOKEN: thirdsecret:tokenforsonar
 phases:
-  install:
-    runtime-versions:
-      java: latest
   build:
     commands:
 
