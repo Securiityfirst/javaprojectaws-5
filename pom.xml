@@ -73,7 +73,7 @@
           <version>2.0.0</version>
           <inherited>false</inherited>
           <configuration>
-            <org>asecurityguru</org>
+            <org>batumejavaprojectaws-5</org>
           </configuration>
         </plugin>
        </plugins>
