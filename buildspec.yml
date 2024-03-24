@@ -1,0 +1,51 @@
+
+version: 0.2
+env:
+    secrets-manager:
+      TOKEN: thirdsecret:tokenforsonar
+phases:
+  install:
+    runtime-versions:
+      java: latest
+  build:
+    commands:
+
+#Static Application Security Scan (SAST scan) using SonarCloud
+     - mvn verify sonar:sonar -Dsonar.projectKey=batumejavaprojectaws-5 -Dsonar.organization=batumejavaprojectaws-5 -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$TOKEN
+
+#Quality Gates for Static Application Security Scan(SAST) using SonarCloud
+
+     - sleep 5
+     - |-
+        quality_status=$(curl -s -u $TOKEN: https://sonarcloud.io/api/qualitygates/project_status?projectKey=batumejavaprojectaws-5 | jq -r '.projectStatus.status')
+        echo "SonarCloud analysistatus is $quality_status";
+#        if [ $quality_status = "ERROR" ] ; then exit 1;fi
+
+#Software Composition Analysis Scan (SCA scan) using Snyk
+
+     - |-
+          apt-get update
+          apt-get -y install maven
+          SNYK_TOKEN=b76273c6-2737-4a62-be11-6b07b54b62d1
+          export SNYK_TOKEN
+          mvn snyk:test -fn
+
+#Dynamic Application Security Scan (DAST scan) using OWASP ZAP
+
+     - |-
+          sudo apt update
+          sudo apt upgrade
+          sudo apt full-upgrade
+          sudo apt autoremove
+          apt-get -y install wget
+          apt-get -y install default-jdk
+          wget https://us-east-1.console.aws.amazon.com/codesuite/codecommit/repositories/BatumeNewRepo7/browse?region=us-east-1/ZAP_2.14.0_Linux.tar.gz
+          tar -xvf ZAP_2.14.0_Linux.tar.gz
+          cd ZAP_2.14.0
+          ./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout ../zap_report.html
+
+#Storing DAST Reports in S3 bucket
+
+artifacts:
+  files:
+    - zap_report.html
