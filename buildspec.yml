@@ -23,7 +23,7 @@ phases:
      - |-
           apt-get update
           apt-get -y install maven
-          SNYK_TOKEN=b76273c6-2737-4a62-be11-6b07b54b62d1
+          SNYK_TOKEN=xxxxxxxxxxxxxxxxxxxxxxx
           export SNYK_TOKEN
           mvn snyk:test -fn
 
